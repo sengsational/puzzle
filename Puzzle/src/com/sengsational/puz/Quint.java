@@ -35,6 +35,17 @@ public class Quint {
 		}
 	}
 
+	public String getItemFormatted() {
+		//                                  "nn, nn, nn, nn, nn"
+		StringBuffer buf = new StringBuffer("  ,   ,   ,   ,   ");
+		buf.replace(0, 2, String.format("%1$2s", first));
+		buf.replace(4, 6, String.format("%1$2s", second));
+		buf.replace(8, 10, String.format("%1$2s", third));
+		buf.replace(12, 14, String.format("%1$2s", fourth));
+		buf.replace(16, 18, String.format("%1$2s", fifth));
+
+		return buf.toString();
+	}
 	
 	public String toString() {
 		return "" + first + ", " + second + ", " + third + ", " + fourth + ", " + fifth;
@@ -42,11 +53,14 @@ public class Quint {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Quint quint = new Quint(3, 8, 7, 5, 15);
+		System.out.println("[" + quint.getItemFormatted() +"]\n[ 3,  8,  7,  5, 15]");
 
 	}
 
 	public boolean is38() {
 		return 38 == first + second + third + fourth + fifth;
 	}
+
 
 }

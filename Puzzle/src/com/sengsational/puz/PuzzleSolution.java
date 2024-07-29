@@ -161,14 +161,19 @@ right down bot 19, 2*, 4*, 13
 		} while (noResultCount < 10000);
 		return false;
 	}
+
+	public boolean uses(int[] centerTiles) {
+		return psf.uses(centerTiles);
+	}
+
 	
 	public String toString() {
 		StringBuffer buf = new StringBuffer();
-		buf.append(psf.getItem(1).toString()).append("\n");
-		buf.append(ht.toString()).append("\n");
-		buf.append(hq.toString()).append("\n");
-		buf.append(hb.toString()).append("\n");
-		buf.append(psf.getItem(4).reverse().toString()).append("\n");
+		buf.append(psf.getItemFormatted(1, true)).append("\n");
+		buf.append(ht.getItemFormatted()).append("\n");
+		buf.append(hq.getItemFormatted()).append("\n");
+		buf.append(hb.getItemFormatted()).append("\n");
+		buf.append(psf.getItemFormatted(4, false)).append("\n");
 		return buf.toString();
 	}
 	
@@ -192,6 +197,7 @@ right down bot 19, 2*, 4*, 13
 		
 
 	}
+
 
 	
 }

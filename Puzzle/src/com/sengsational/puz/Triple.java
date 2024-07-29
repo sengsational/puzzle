@@ -25,6 +25,14 @@ public class Triple implements Comparable {
 		this.first = save;
 		return this;
 	}
+	
+	public boolean uses(int[] centerTiles) {
+		for (int i : centerTiles) {
+			if (i == first || i == second || i == third) return true;
+		}
+		return false;
+	}
+	
 
 	
 	public String toString() {
@@ -90,4 +98,5 @@ public class Triple implements Comparable {
 		System.out.println(loop1.hasMiddleOrLeftMatch(new Triple("3, 5, 7")) + " true ");
 		System.out.println(loop1.hasMiddleOrLeftMatch(new Triple("13, 5, 3")) + " false ");
 	}
+
 }

@@ -30,6 +30,23 @@ public class TripleSolution implements Comparable{
 	public Triple getItem(int i) {
 		return chainList.get(i - 1);
 	}
+	
+	public String getItemFormatted(int i, boolean forward) {
+		//                                  "nn, nn, nn, nn, nn"
+		StringBuffer buf = new StringBuffer("      ,   ,       ");
+		Triple anItem = getItem(i);
+		
+		if (!forward) {
+			buf.replace(12, 14, String.format("%1$2s", anItem.first));
+			buf.replace(8, 10, String.format("%1$2s", anItem.second));
+			buf.replace(4, 6, String.format("%1$2s", anItem.third));
+		} else {
+			buf.replace(12, 14, String.format("%1$2s", anItem.third));
+			buf.replace(8, 10, String.format("%1$2s", anItem.second));
+			buf.replace(4, 6, String.format("%1$2s", anItem.first));
+		}
+		return buf.toString();
+	}
 
 	public void add(Triple chainedTriple) {
 		chainList.add(chainedTriple);
@@ -59,6 +76,16 @@ public class TripleSolution implements Comparable{
 		return false;
 	}
 
+	public boolean uses(int[] centerTiles) {
+		boolean usesCenterTiles = false;
+		for (Triple aTriple : chainList) {
+			if (aTriple.uses(centerTiles)) {
+				usesCenterTiles = true;
+				break;
+			}
+		}
+		return usesCenterTiles;
+	}
 	
 	
 	boolean isRotationOrReflection(TripleSolution listSolution) {
@@ -138,6 +165,9 @@ public class TripleSolution implements Comparable{
 
 	public static void main(String[] args) {
 		TripleSolution solution = new TripleSolution(new Triple("5,18,15"));
+		
+		System.out.println("forward  \n[" + solution.getItemFormatted(1, true)  + "]\n[     5, 18, 15    ] < correct");
+		System.out.println("backward \n[" + solution.getItemFormatted(1, false) + "]\n[    15, 18,  5    ] < correct");
 		                                      //33
 		solution.add(new Triple("15,13,10")); //23
 		solution.add(new Triple("10,9,19"));  //28
@@ -175,5 +205,6 @@ public class TripleSolution implements Comparable{
 		System.out.println("incomplete: " + solution.incomplete() + " true");
 		
 	}
+
 
 }

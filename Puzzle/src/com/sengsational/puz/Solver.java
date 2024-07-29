@@ -6,6 +6,7 @@ import java.util.Collections;
 public class Solver {
 	public static int REMOVE = 0;
 	public static int PRESERVE = 1;
+	public static int[] CENTER_TILES = {1,2,4,5,6,7,8}; // This is to see how many perimeters use tiles that must be in the center
 
 	public static void main(String[] args) {
 		ArrayList<Triple> tripleList = PuzzHelper.getTripleList();
@@ -121,8 +122,18 @@ public class Solver {
 				System.out.println(puzzleSolution);
 				solutionFound = true;
 				break;
+			} else if(!puzzleSolution.uses(CENTER_TILES)) {
+				System.out.println("That perimeter doesn't use the center tiles, so let's brute force a bit harder.");
+				System.out.println("Let's try that again!!");
+				System.out.println("Let's try that again!!");
+				System.out.println("Let's try that again!!");
+				if (puzzleSolution.solve()) {
+					System.out.println(puzzleSolution);
+					solutionFound = true;
+					break;
+				}
 			} else {
-				System.out.println("perimeter " + i + " appears not to be a solvable permieter " + solutionList.get(i));
+				System.out.println("perimeter " + i + " appears not to be a solvable permieter " + solutionList.get(i) + " " + (puzzleSolution.uses(CENTER_TILES)?"":"<<closer"));
 			}
 		}
 		if (solutionFound) {
