@@ -131,6 +131,8 @@ public class Solver {
 					System.out.println(puzzleSolution);
 					solutionFound = true;
 					break;
+				} else {
+					System.out.println("perimeter " + i + " appears not to be a solvable permieter " + solutionList.get(i) + " " + (puzzleSolution.uses(CENTER_TILES)?"":"<<closer"));
 				}
 			} else {
 				System.out.println("perimeter " + i + " appears not to be a solvable permieter " + solutionList.get(i) + " " + (puzzleSolution.uses(CENTER_TILES)?"":"<<closer"));
